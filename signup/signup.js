@@ -36,8 +36,6 @@ login.addEventListener('click',()=>{
 
 regestrationBtn.addEventListener('click',()=>{
 // validations
-
-// authentication
 if (userName.value > 2 && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
 // authentication
 createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
@@ -45,13 +43,13 @@ createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     // Signed up 
     const user = userCredential.user;
     console.log(user)
+    window.location.href = '../signIn/signin.html'
     // email verification
 sendEmailVerification(auth.currentUser)
 .then(() => {
   // Email verification sent!
   // ...
 });
-window.location.href = '../signIn/signin.html'
     // ...
   })
   .catch((error) => {
