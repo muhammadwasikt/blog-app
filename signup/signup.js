@@ -36,26 +36,24 @@ login.addEventListener('click',()=>{
 
 regestrationBtn.addEventListener('click',()=>{
 // validations
-if (userName.value > 2 && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
-// authentication
+if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
+regestrationBtn.innerHTML = 'loading.....'
+  // authentication
 createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
   .then((userCredential) => {
     // Signed up 
+    regestrationBtn.innerHTML = 'Create Account'
     const user = userCredential.user;
-    console.log(user)
-    window.location.href = '../signIn/signin.html'
-    // email verification
-sendEmailVerification(auth.currentUser)
-.then(() => {
-  // Email verification sent!
-  // ...
-});
+    userEmail.value = ''
+    userPassword.value = ''
+    userName.value = ''
+console.log(user)
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode , errorMessage)
+    console.log(errorCode + ',' + errorMessage)
     // ..
   });
 // validation error
@@ -78,9 +76,6 @@ if (!/^(?=.*[a-z])(?=.*[A-Z])/.test(userName.value) && !/^[a-zA-Z0-9._-]+@[a-zA-
   Swal.fire("Type correct email and password");
 }
 
-userEmail.value = ''
-userName.value = ''
-userPassword.value = ''
 
 })
 googleLogin.addEventListener('click',()=>{

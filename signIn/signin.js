@@ -41,6 +41,8 @@ if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[
 signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
   .then((userCredential) => {
     // Signed in 
+    userEmail.value = ''
+    userPassword.value = ''
     window.location.href = '../index.html'
     const user = userCredential.user;
     console.log(user)
@@ -72,8 +74,7 @@ if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && !
   Swal.fire("Type correct email and password");
 }
 
-  userEmail.value = ''
-  userPassword.value = ''
+
 }) 
 if (googleLogin) {
     googleLogin.addEventListener('click',()=>{
