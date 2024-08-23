@@ -1,0 +1,230 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    background: transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ /* LOGOUT DIV AREA  */
+ .logout-div{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(15, 15, 15, 0.233);
+    display: none;
+}
+.block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logOut{
+    max-width: 300px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+border-radius: 20px;
+box-shadow: 1px 1px 1px 1px gray;
+background-color: aliceblue;
+}
+.button-div{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#yes-btn,
+#no-btn{
+    width: 70px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: medium;
+    box-shadow: 1px 1px 1px 1px gray;
+    cursor: pointer;
+}
+#yes-btn:active,
+#no-btn:active{
+    box-shadow: 0px 0px 0px 0px;
+    transform: translateY(1px);
+}
+
+/* HEADER */
+#header{
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(248, 221, 188);
+}
+.logo{
+    font-size: 40px;
+    letter-spacing: -5px;
+    color: rgb(46, 46, 250);
+}
+.search-bar{
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 25px;
+}
+#search{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+.blog{
+    display: flex;
+    column-gap: 30px;
+}
+#all-blog,
+#add-blog{
+    border: none;
+    font-size: large;
+    cursor: pointer;
+}
+#all-blog:hover,
+#add-blog:hover,
+#logout:hover{
+    color: blue;
+}
+#logout{
+    padding:5px 15px;
+    border-radius: 25px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px black;
+}
+#logout:active{
+    box-shadow: 0px 0px 0px 0px;
+    transform: translateY(1px);
+}
+
+/* BLOG CONTAINER */
+
+#blog-container {
+    max-width: 600px;
+    margin:auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.blog-container h1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.blogForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.blogForm label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.blogForm input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    outline: none;
+}
+.blogForm textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    outline: none;
+}
+
+.blogForm textarea {
+    resize: vertical;
+}
+.blogForm div{
+    width: 100%;
+    height: 50px;
+    padding:5px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.blogForm label{
+    width: 100%;
+    font-size: 1em;
+    color: #333;
+}
+.blogForm label input{
+    display: none;
+}
+#user-img{
+    width: 50px;
+    height: 50px;
+    border: none;
+    object-fit: contain;
+    display: none;
+}
+.blogForm button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0e81fc;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+box-shadow: 2px 2px 2px 2px #0075f1;
+}
+
+.blogForm button:hover {
+    background-color: #5bb5f1;
+}
+.blogForm button:active{
+    box-shadow: 0px 0px 0px 0px;
+    transform: translateY(2px);
+}
+
+
+
+@media only screen and (max-width:799px) {
+    .search-bar{
+        max-width: 200px;
+    }
+    .blog{
+        column-gap: 15px;
+    }
+}
+@media only screen and (max-width:640px) {
+    .search-bar{
+        display: none;
+    }
+    
+}
+@media only screen and (max-width:460px) {
+    #header{
+        padding: 20px 10px;
+    }
+    #all-blog,
+    #add-blog{
+   font-size: medium;
+    }
+   #logout{
+    font-size: medium;
+   } 
+  .logo{
+    font-size: 25px;
+} 
+}

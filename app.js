@@ -1,13 +1,21 @@
 // firebase import
 import {onAuthStateChanged , signOut} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth } from "../firebase/firebase.js";
-
+import { db} from "../firebase/firebase.js";
+import { getDocs , collection} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let logout = document.getElementById('logout')
 let logOutDiv = document.querySelector('.logout-div')
 let logOutCancel = document.getElementById('no-btn')
 let logOutYes = document.getElementById('yes-btn')
 let addNewBlog = document.getElementById('add-blog')
+let blogArea = document.getElementById('blog-area')
+// let userImage = document.getElementById('user-image')
+// let blogTitle = document.getElementById('blog-title')
+// let blogDescription = document.getElementById('blog-description')
+
+
+
 
 logout.addEventListener('click',()=>{
 logOutDiv.classList.add('block')
@@ -32,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        console.log(uid)
+        // console.log(uid)
       // ...
     } else {
         window.location.href = './signIn/signin.html'
@@ -44,3 +52,23 @@ onAuthStateChanged(auth, (user) => {
 addNewBlog.addEventListener('click',()=>{
   window.location.href = './dashboard/dashboard.html'
 })
+const getDataFromFirebase = async ()=>{
+const querySnapshot = await getDocs(collection(db, "users"));
+querySnapshot.forEach((doc) => {
+  const { title, description , img } = doc.data();
+// userImage.src = img
+// blogTitle.innerHTML = title
+// blogDescription.innerHTML = description
+blogArea.innerHTML += `  
+    <div class="card">
+    <img src=${img} id="user-image" class="card-img-top" alt="">
+    <div class="card-body">
+    <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
+    <p id="blog-description" class="card-text">${description}</p>
+    </div>
+    </div>`
+
+
+})
+}
+getDataFromFirebase();
