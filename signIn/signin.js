@@ -33,7 +33,7 @@ regestrationBtn.addEventListener('click',()=>{
 })
 // registration function
 login.addEventListener('click',()=>{
-
+login.innerHTML = 'Loading......'
 // validations
 if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
 
@@ -44,6 +44,7 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     userEmail.value = ''
     userPassword.value = ''
     window.location.href = '../index.html'
+    login.innerHTML = 'Login'
     const user = userCredential.user;
     console.log(user)
     // ...
