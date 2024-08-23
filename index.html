@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOG WEBSITE</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/307cafd945.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- LOGOUT DIV AREA -->
+  <div class="logout-div">
+    <div class="logOut">
+      <h3>Are you sure you want to logOut</h3>
+      <div class="button-div">
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+      </div>
+    </div>
+  </div>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="logo">
+      BLOGS
+    </div>
+    <div class="search-bar">
+      <input id="search" type="text" placeholder="Enter your search item">
+      <i class="fa fa-search"></i>
+    </div>
+    <div class="blog">
+      <button id="all-blog">All Blogs</button>
+      <button id="add-blog">Add Blog</button>
+      <button id="logout">logOut</button>
+    </div>
+  </header>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="./firebase/firebase.js"></script>
+</body>
+</html>
