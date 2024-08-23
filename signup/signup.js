@@ -47,6 +47,7 @@ createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     userEmail.value = ''
     userPassword.value = ''
     userName.value = ''
+    window.location.href = '../signIn/signin.html'
 console.log(user)
     // ...
   })
