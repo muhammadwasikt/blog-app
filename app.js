@@ -10,10 +10,13 @@ let logOutCancel = document.getElementById('no-btn')
 let logOutYes = document.getElementById('yes-btn')
 let addNewBlog = document.getElementById('add-blog')
 let blogArea = document.getElementById('blog-area')
-// let userImage = document.getElementById('user-image')
-// let blogTitle = document.getElementById('blog-title')
-// let blogDescription = document.getElementById('blog-description')
-
+let loader = document.querySelector('#loader')
+let userImage = document.getElementById('user-image')
+let blogTitle = document.getElementById('blog-title')
+let blogDescription = document.getElementById('blog-description')
+let description;
+let title;
+let img;
 
 
 
@@ -55,13 +58,11 @@ addNewBlog.addEventListener('click',()=>{
 const getDataFromFirebase = async ()=>{
 const querySnapshot = await getDocs(collection(db, "users"));
 querySnapshot.forEach((doc) => {
-  const { title, description , img } = doc.data();
-// userImage.src = img
-// blogTitle.innerHTML = title
-// blogDescription.innerHTML = description
+const { title, description , img } = doc.data();
+  loader.style.display = 'none'
 blogArea.innerHTML += `  
-    <div class="card">
-    <img src=${img} id="user-image" class="card-img-top" alt="">
+    <div class="cards">
+    <img src=${img} id="user-image" alt="">
     <div class="card-body">
     <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
     <p id="blog-description" class="card-text">${description}</p>

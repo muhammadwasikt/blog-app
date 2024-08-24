@@ -1,14 +1,18 @@
 // firebase import
+import {signOut} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { ref , uploadBytesResumable , getDownloadURL} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { storage , db} from "../firebase/firebase.js";
+import {auth , storage , db} from "../firebase/firebase.js";
 
 let blogTitle = document.getElementById('title')
 let description = document.getElementById('description')
 let userImage = document.getElementById('file')
 let addNewBlog = document.getElementById('add-btn')
 let allBlog = document.getElementById('all-blog')
-
+let logout = document.getElementById('logout')
+let logOutDiv = document.querySelector('.logout-div')
+let logOutCancel = document.getElementById('no-btn')
+let logOutYes = document.getElementById('yes-btn')
 
 
 
@@ -80,4 +84,21 @@ allBlog.addEventListener('click',()=>{
       }
     
   })
-
+  logout.addEventListener('click',()=>{
+    logOutDiv.classList.add('block')
+       
+    })
+    logOutCancel.addEventListener('click',()=>{
+      logOutDiv.classList.remove('block')
+    })
+    logOutYes.addEventListener('click',()=>{
+      signOut(auth)
+      .then(()=>{
+        logOutDiv.classList.remove('block')
+        window.location.href = '../index.html'
+        console.log('user sign Out');
+      })
+      .catch((error)=>{
+    console.log(error)
+      })
+    })
