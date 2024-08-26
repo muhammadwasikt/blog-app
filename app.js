@@ -2,14 +2,14 @@
 import {onAuthStateChanged , signOut} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth } from "../firebase/firebase.js";
 import { db} from "../firebase/firebase.js";
-import { getDocs , collection} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getDocs , collection , orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let logout = document.getElementById('logout')
 let logOutDiv = document.querySelector('.logout-div')
 let logOutCancel = document.getElementById('no-btn')
 let logOutYes = document.getElementById('yes-btn')
 let addNewBlog = document.getElementById('add-blog')
-let blogArea = document.getElementById('blog-area')
+let blogArea = document.querySelector('.blog-area')
 let loader = document.querySelector('#loader')
 
 
@@ -47,26 +47,23 @@ addNewBlog.addEventListener('click',()=>{
   window.location.href = './dashboard/dashboard.html'
 })
 const getDataFromFirebase = async ()=>{
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-const { title, description , img , date } = doc.data();
-  loader.style.display = 'none'
+  const querySnapshot = await getDocs(collection(db, "users"));
 
-  console.log(date)
-blogsArea(img , description , title , date);
-})
+  querySnapshot.forEach((doc) => {
+    const { title, description , img } = doc.data();
+loader.style.display = 'none'
+  blogArea.innerHTML += `  
+    <div class="card">
+    <img src=${img} id="user-image" alt="">
+    <div class="card-body">
+    <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
+    <p id="blog-description" class="card-text">${description}</p>
+    </div>
+    </div>`
+  })
 }
+
 getDataFromFirebase();
 
-const blogsArea = (img , title , description , date)=>{
-    blogArea.innerHTML += `  
-        <div class="card">
-        <img src=${img} id="user-image" alt="">
-        <div class="card-body">
-        <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
-        <p id="blog-description" class="card-text">${description}</p>
-        </div>
-        </div>`
-    
-  }
+
 

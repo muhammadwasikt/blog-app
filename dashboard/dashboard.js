@@ -14,10 +14,9 @@ let logOutDiv = document.querySelector('.logout-div')
 let logOutCancel = document.getElementById('no-btn')
 let logOutYes = document.getElementById('yes-btn')
 let loader = document.querySelector('#loader')
+let uploadImage = document.getElementById('file-load')
 
 
-
-let count = 0
 let images
 let uploadTask;
 let getImage;
@@ -43,7 +42,12 @@ userImage.addEventListener('change', (event) => {
    uploadTask = uploadBytesResumable(imagesRefWithFolder, files);
    uploadTask.on('state_changed',
        (snapshot) => {
-           // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           uploadImage.innerHTML = "Your file is uploading"
+           if (progress == 100) {
+            uploadImage.innerHTML = ''
+           }
+           console.log(progress)
            switch (snapshot.state) {
                case 'paused':
                    break;
@@ -79,7 +83,6 @@ allBlog.addEventListener('click',()=>{
           title: blogTitle.value,
           description: description.value,
           img: getImage,
-          date: count++
          }
         );
         addNewBlog.innerHTML = 'Loading........'

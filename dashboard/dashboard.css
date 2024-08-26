@@ -171,12 +171,16 @@ align-items: center;
 .blogForm label input{
     display: none;
 }
+
 #user-img{
     width: 50px;
     height: 50px;
     border: none;
     object-fit: contain;
     display: none;
+}
+#file-load{
+    text-align: right;
 }
 .blogForm button {
     padding: 10px 15px;
