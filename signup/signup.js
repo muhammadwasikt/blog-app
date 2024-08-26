@@ -37,7 +37,9 @@ login.addEventListener('click',()=>{
 regestrationBtn.addEventListener('click',()=>{
 // validations
 if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
-regestrationBtn.innerHTML = 'loading.....'
+if (/gmail.com/.test(userEmail.value)) {
+
+  regestrationBtn.innerHTML = 'loading.....'
   // authentication
 createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
   .then((userCredential) => {
@@ -68,6 +70,11 @@ console.log(user)
     // ..
   });
 // validation error
+  
+} else {
+  Swal.fire("Type valid email")
+  regestrationBtn.innerHTML = 'Create Account'
+}
 }
 if (userName.value >! 2) {
   Swal.fire("Type name");

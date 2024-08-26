@@ -36,7 +36,7 @@ login.addEventListener('click',()=>{
 login.innerHTML = 'Loading......'
 // validations
 if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && /[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
-
+  if (/gmail.com/.test(userEmail.value)) {
 // authentication
 signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
   .then((userCredential) => {
@@ -66,6 +66,10 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     }
   })
 // validation error
+}else {
+  Swal.fire("Type valid email")
+  login.innerHTML = 'Login'
+}
 }
 if (userEmail.value.length == 0 && userPassword.value.length == 0) {
   Swal.fire("Type email and password");
