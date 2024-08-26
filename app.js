@@ -35,11 +35,7 @@ console.log(error)
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        // console.log(uid)
-      // ...
     } else {
         window.location.href = './signIn/signin.html'
       // User is signed out
@@ -53,17 +49,24 @@ addNewBlog.addEventListener('click',()=>{
 const getDataFromFirebase = async ()=>{
 const querySnapshot = await getDocs(collection(db, "users"));
 querySnapshot.forEach((doc) => {
-const { title, description , img } = doc.data();
+const { title, description , img , date } = doc.data();
   loader.style.display = 'none'
-blogArea.innerHTML += `  
-    <div class="card">
-    <img src=${img} id="user-image" alt="">
-    <div class="card-body">
-    <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
-    <p id="blog-description" class="card-text">${description}</p>
-    </div>
-    </div>`
 
+  console.log(date)
+blogsArea(img , description , title , date);
 })
 }
 getDataFromFirebase();
+
+const blogsArea = (img , title , description , date)=>{
+    blogArea.innerHTML += `  
+        <div class="card">
+        <img src=${img} id="user-image" alt="">
+        <div class="card-body">
+        <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
+        <p id="blog-description" class="card-text">${description}</p>
+        </div>
+        </div>`
+    
+  }
+

@@ -17,7 +17,7 @@ let loader = document.querySelector('#loader')
 
 
 
-
+let count = 0
 let images
 let uploadTask;
 let getImage;
@@ -78,7 +78,8 @@ allBlog.addEventListener('click',()=>{
         {
           title: blogTitle.value,
           description: description.value,
-          img: getImage
+          img: getImage,
+          date: count++
          }
         );
         addNewBlog.innerHTML = 'Loading........'

@@ -57,7 +57,7 @@ background-color: aliceblue;
 /* HEADER */
 #header{
     width: 100%;
-    padding: 40px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -111,9 +111,26 @@ background-color: aliceblue;
     box-shadow: 0px 0px 0px 0px;
     transform: translateY(1px);
 }
-.blog-area{
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 6px;
+    background:
+      conic-gradient(from 135deg at top,currentColor 90deg, #0000 0) 0 calc(50% - 4px)/17px 8.5px,
+      radial-gradient(farthest-side at bottom left,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) top right/50%  50% content-box content-box,
+      radial-gradient(farthest-side at top        ,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) bottom   /100% 50% content-box content-box;
+    background-repeat: no-repeat;
+    animation: l11 1s infinite linear;
+    margin:170px 45%;
+    position: fixed;
+  }
+  @keyframes l11{ 
+    100%{transform: rotate(1turn)}
+  }
+#blog-area{
     width: 100%;
-    padding: 10px 20px;
+    padding: 20px 10px;
     display: grid;
     grid-template-columns: auto auto auto auto;
     justify-content: space-between;
@@ -147,30 +164,13 @@ background-color: aliceblue;
     padding:5px 10px;
 }
 
-.loader {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    padding: 6px;
-    background:
-      conic-gradient(from 135deg at top,currentColor 90deg, #0000 0) 0 calc(50% - 4px)/17px 8.5px,
-      radial-gradient(farthest-side at bottom left,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) top right/50%  50% content-box content-box,
-      radial-gradient(farthest-side at top        ,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) bottom   /100% 50% content-box content-box;
-    background-repeat: no-repeat;
-    animation: l11 1s infinite linear;
-    margin:150px 45%;
-    position: fixed;
-  }
-  @keyframes l11{ 
-    100%{transform: rotate(1turn)}
-  }
 @media only screen and (max-width:1040px) {
-    .blog-area{
+    #blog-area{
         grid-template-columns: auto auto auto;
     }
 }
 @media only screen and (max-width:799px) {
-    .blog-area{
+    #blog-area{
         grid-template-columns: auto auto;
     }
     .search-bar{
@@ -184,10 +184,13 @@ background-color: aliceblue;
     .search-bar{
         display: none;
     }
+    .loader{
+        margin: 150px, 40%;
+    }
     
 }
 @media only screen and (max-width:470px) {
-    .blog-area{
+    #blog-area{
         grid-template-columns: auto;
         justify-content: center;
     }
