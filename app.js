@@ -1,8 +1,8 @@
 // firebase import
-import {onAuthStateChanged , signOut} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {onAuthStateChanged , signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth } from "../firebase/firebase.js";
 import { db} from "../firebase/firebase.js";
-import { getDocs , collection , orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getDocs , collection , } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let logout = document.getElementById('logout')
 let logOutDiv = document.querySelector('.logout-div')
@@ -25,6 +25,7 @@ logOutCancel.addEventListener('click',()=>{
 logOutYes.addEventListener('click',()=>{
   signOut(auth)
   .then(()=>{
+    localStorage.removeItem('user email')
     logOutDiv.classList.remove('block')
     console.log('user sign Out');
   })
@@ -34,8 +35,8 @@ console.log(error)
 })
 
 onAuthStateChanged(auth, (user) => {
-  localStorage.getItem('user email', user.uid)
-    if (user.uid) {
+  localStorage.getItem('user email')
+    if (user) {
         
     } else {
         window.location.href = './signIn/signin.html'

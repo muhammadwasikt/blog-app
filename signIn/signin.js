@@ -67,7 +67,16 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
   })
 // validation error
 }
-if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && !/[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
+if (userEmail.value.length == 0 && userPassword.value.length == 0) {
+  Swal.fire("Type email and password");
+   login.innerHTML = 'Login'
+}else if (userEmail.value.length == 0) {
+  Swal.fire("Type email");
+   login.innerHTML = 'Login'
+} else if (userPassword.value.length == 0) {
+  Swal.fire("Type password");
+     login.innerHTML = 'Login'
+} else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && !/[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
   Swal.fire("Type correct email and password");
   login.innerHTML = 'Login'
 }

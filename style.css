@@ -18,6 +18,7 @@
     z-index: 999;
 }
 .block{
+    height: 100vmin;
     display: flex;
     justify-content: center;
     align-items: center;
