@@ -55,7 +55,7 @@ createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
       // Email verification sent!
       // ...
         alert('Please verify your account go to gmail')
-        let mailboxUrl = 'https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=Ab5oB3rw_zRQfJQ7uFApV2SRRLrMQ9fcoTjjXdxv2BJ8obXBbmCVbX0ZULxP65ZuGHITyIeklj7d3A&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
+        let mailboxUrl = 'https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&emr=1&ltmpl=default&ltmplcache=2&osid=1&passive=true&rm=false&scc=1&service=mail&ss=1&ifkv=Ab5oB3qlG03nWwBrXqI8jItJ4fuZ-3tUFEEJopUyfQhDM4FDJniaSLuVpqKv5udtyvfv1KNS-qty_g&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
         window.open(mailboxUrl, '_blank');
     });
 console.log(user)
