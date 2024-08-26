@@ -34,8 +34,9 @@ console.log(error)
 })
 
 onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const uid = user.uid;
+  localStorage.getItem('user email', user.uid)
+    if (user.uid) {
+        
     } else {
         window.location.href = './signIn/signin.html'
       // User is signed out

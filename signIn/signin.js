@@ -45,6 +45,7 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     userPassword.value = ''
     login.innerHTML = 'Login'
     const user = userCredential.user;
+    localStorage.setItem('user email', user.uid)
     console.log(user)
       if (user.emailVerified) {
         window.location.href = '../index.html' 
