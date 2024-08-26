@@ -11,12 +11,7 @@ let logOutYes = document.getElementById('yes-btn')
 let addNewBlog = document.getElementById('add-blog')
 let blogArea = document.getElementById('blog-area')
 let loader = document.querySelector('#loader')
-let userImage = document.getElementById('user-image')
-let blogTitle = document.getElementById('blog-title')
-let blogDescription = document.getElementById('blog-description')
-let description;
-let title;
-let img;
+
 
 
 
@@ -61,14 +56,13 @@ querySnapshot.forEach((doc) => {
 const { title, description , img } = doc.data();
   loader.style.display = 'none'
 blogArea.innerHTML += `  
-    <div class="cards">
+    <div class="card">
     <img src=${img} id="user-image" alt="">
     <div class="card-body">
     <h5 id="blog-title" class="card-title">${title.toUpperCase()}</h5>
     <p id="blog-description" class="card-text">${description}</p>
     </div>
     </div>`
-
 
 })
 }
