@@ -46,7 +46,14 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     login.innerHTML = 'Login'
     const user = userCredential.user;
     console.log(user)
-      window.location.href = '../index.html'      
+      if (user.emailVerified) {
+        window.location.href = '../index.html' 
+      }else{
+        alert('Please verify your account go to gmail')
+        let mailboxUrl = 'https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=Ab5oB3rw_zRQfJQ7uFApV2SRRLrMQ9fcoTjjXdxv2BJ8obXBbmCVbX0ZULxP65ZuGHITyIeklj7d3A&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
+      
+        window.open(mailboxUrl, '_blank');
+      }    
     // ...
   })
   .catch((error) => {

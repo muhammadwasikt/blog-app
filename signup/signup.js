@@ -48,11 +48,13 @@ createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     userPassword.value = ''
     userName.value = ''
     alert('Your account is create ')
-    window.location.href = '../signIn/signin.html'
     sendEmailVerification(auth.currentUser)
     .then(() => {
       // Email verification sent!
       // ...
+        alert('Please verify your account go to gmail')
+        let mailboxUrl = 'https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=Ab5oB3rw_zRQfJQ7uFApV2SRRLrMQ9fcoTjjXdxv2BJ8obXBbmCVbX0ZULxP65ZuGHITyIeklj7d3A&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
+        window.open(mailboxUrl, '_blank');
     });
 console.log(user)
     // ...
@@ -60,6 +62,8 @@ console.log(user)
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    Swal.fire('This email is already use')
+     regestrationBtn.innerHTML = 'Create Account'
     console.log(errorCode + ',' + errorMessage)
     // ..
   });
