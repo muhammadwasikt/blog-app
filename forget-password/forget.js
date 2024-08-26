@@ -23,6 +23,8 @@ forgetButton.addEventListener('click',()=>{
     const errorMessage = error.message;
     // ..
   });
+}else if (email.value.length == 0) {
+  Swal.fire("Type email");
 }else {
     Swal.fire("Type correct email");
 }
