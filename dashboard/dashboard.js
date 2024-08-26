@@ -37,7 +37,31 @@ userImage.addEventListener('change', (event) => {
         }
     }
    fileReader.readAsDataURL(images);
-
+    // File upload on cloud storage
+   const files = userImage.files[0];
+   const imagesRefWithFolder = ref(storage, `products/${files.name}`);
+   uploadTask = uploadBytesResumable(imagesRefWithFolder, files);
+   uploadTask.on('state_changed',
+       (snapshot) => {
+           // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           switch (snapshot.state) {
+               case 'paused':
+                   break;
+               case 'running':
+                   break;
+           }
+       },
+       (error) => {
+           console.log(error);
+       },
+       () => {
+           getDownloadURL(uploadTask.snapshot.ref)
+               .then((downloadURL) => {
+                   getImage = downloadURL;
+               });
+       }
+       
+     )
 
 });
 
@@ -47,31 +71,7 @@ allBlog.addEventListener('click',()=>{
 
   // Data upload on firestore
   addNewBlog.addEventListener('click', async ()=>{
-  // File upload on cloud storage
-  const files = userImage.files[0];
-  const imagesRefWithFolder = ref(storage, `products/${files.name}`);
-  uploadTask = uploadBytesResumable(imagesRefWithFolder, files);
-  uploadTask.on('state_changed',
-      (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          switch (snapshot.state) {
-              case 'paused':
-                  break;
-              case 'running':
-                  break;
-          }
-      },
-      (error) => {
-          console.log(error);
-      },
-      () => {
-          getDownloadURL(uploadTask.snapshot.ref)
-              .then((downloadURL) => {
-                  getImage = downloadURL;
-              });
-      }
-      
-    )
+ 
 
     if (blogTitle.value.length > 0 && description.value.length > 0 && images) {
         const docRef = await addDoc(collection(db, "users"),
@@ -85,9 +85,9 @@ allBlog.addEventListener('click',()=>{
         loader.style.display = 'block'
         window.location.href = '../index.html'  
     }
-else {
-  Swal.fire('Filled all field')
-}
+   else {
+        Swal.fire('Filled all field')
+   }
   })
   logout.addEventListener('click',()=>{
     logOutDiv.classList.add('block')
