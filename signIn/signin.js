@@ -1,5 +1,5 @@
 // firebase import
-import { signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider , sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth , provider} from "../firebase/firebase.js";
 
 
@@ -43,36 +43,35 @@ signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     // Signed in 
     userEmail.value = ''
     userPassword.value = ''
-    window.location.href = '../index.html'
     login.innerHTML = 'Login'
     const user = userCredential.user;
     console.log(user)
+      window.location.href = '../index.html'      
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode)
-    console.log(errorMessage)
+    login.innerHTML = 'Login'
+    if (errorMessage) {
+      Swal.fire('Type valid email and password')
+    }
   })
-// email verification
-sendEmailVerification(auth.currentUser)
-  .then(() => {
-    // Email verification sent!
-    // ...
-  });
 // validation error
-}
-if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value)) {
-  Swal.fire("Type correct email");
-userEmail.style.color = 'red'
-}
-if (!/[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)){
-    document.getElementById('password-section').style.color = 'red'
-    Swal.fire("Type correct password");
 }
 if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value) && !/[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)) {
   Swal.fire("Type correct email and password");
+  login.innerHTML = 'Login'
+}
+else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail.value)) {
+  Swal.fire("Type correct email");
+userEmail.style.color = 'red'
+login.innerHTML = 'Login'
+}
+else if (!/[A-Za-z\d!@#$%^&*]{8,}$/.test(userPassword.value)){
+    document.getElementById('password-section').style.color = 'red'
+    Swal.fire("Type correct password");
+    login.innerHTML = 'Login'
 }
 
 
